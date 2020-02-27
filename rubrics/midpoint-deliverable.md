@@ -7,9 +7,6 @@ Includes an introductory paragraph describing:
 - The purpose/importance of the project (**2 points**)
 - The source of the data of the project (**1 point**)
 
-The importance of our project is that the ability to understand that food scarcity/accessibility is a public health issue and we are
-interested in how data can drive analysis of social issues. The source of our data comes from three datasets
-
 ## Summary Information (**15 points**)
 Computes (and includes) 5 pieces of _relevant_ information using a function saved in a `script/` file. For each piece of information, make sure to:
 - Compute the information accurately in the script (**1 point**)
