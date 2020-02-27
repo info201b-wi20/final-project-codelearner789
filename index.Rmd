@@ -11,15 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+The importance of our project is that the ability to understand that food scarcity/accessibility is a public health issue and we are interested in how data can drive analysis of social issues. The source of our data comes from three datasets. The first dataset is a global food price tracker that was collected and compiled by the World Food Program. Their data focuses on providing information on food prices form developing countries. The second dataset that we are pulling from is data from the UN Sustainable Development Goals and the data provides the number of undernourished people per country from 2000 to 2017. The third dataset is a dataset that is compiled from the World Bank. The data collected is recieved from countries that participate and share data with the World Bank. The data is about poverty and equity levels from around the world.  
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
+## Summary Information
 
 You can also embed plots, for example:
 
