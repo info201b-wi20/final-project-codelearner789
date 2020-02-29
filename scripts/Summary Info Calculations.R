@@ -17,7 +17,8 @@ prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAr
     year = TimePeriod, 
     value = Value) 
 
-prev_undernourished_final_data <- lapply(prev_undernourished_final_data, gsub, pattern = '""', replacement = '' )
+prev_undernourished_final_data <- as.data.frame(lapply(prev_undernourished_final_data,
+                                                       function(x) gsub('\"', '', x)))
 
 food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, mp_year, mp_price) %>%
   rename(
@@ -28,13 +29,13 @@ food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, m
     price = mp_price
   )
 
-#Creat summary info function
+#Creat summary info function for undernourished data set
 get_summary_info <- function(prev_undernourished_final_data) {
   ret <- list(
     recent_year = select(prev_undernourished_final_data, year) %>%
       group_by(year) %>%
-      summarize(recent_year = max(year)) %>%
-      filter(recent_year == max(recent_year, na.rm = TRUE)) %>%
+      summarize(last_year = max(year)) %>%
+      filter(last_year == max(last_year, na.rm = TRUE)) %>%
       pull(year),
     earliest_year = select(prev_undernourished_final_data, year) %>%
       group_by(year) %>%
@@ -45,11 +46,31 @@ get_summary_info <- function(prev_undernourished_final_data) {
       group_by(location_name) %>%
       summarize(value = max(value, na.rm = TRUE)) %>%
       filter(value == max(value, na.rm = TRUE)) %>%
-      pull(location_name)
+      pull(location_name),
+    most_num_people_undernourished = select(prev_undernourished_final_data, value) %>%
+      groupby(value) %>%
+      summarize(highest_num = max(value, na.rm = TRUE)) %>%
+      arrange(-highest_num) %>%
+      top_n(1),
+    country_least_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
+      group_by(location_name) %>%
+      summarize(value = min(value, na.rm = TRUE)) %>%
+      filter(value == min(value, na.rm = TRUE)) %>%
+      pull(location_name),
+    least_num_undernourished = select(prev_undernourished_final_data, value) %>%
+      groupby(value) %>%
+      summarize(highest_num = max(value, na.rm = TRUE)) %>%
+      arrange(highest_num) %>%
+      top_n(1) 
   ) 
   return(ret)
 }
 
-#num_location = select(prev_undernourished_final_data, location_name) %>%
- # group_by(location_name) %>%
-  #summarize(num_locations = length(location_name)) %>%
+#Summary info function for food price data
+get_summary_info <- function(food_price_data_final) {
+  
+}
+
+
+
+
