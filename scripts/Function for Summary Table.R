@@ -2,9 +2,8 @@ rm(list = ls())
 library("dplyr")
 library("stringr")
 source("Summary Info Calculations.R")
-food_prices <- read.csv("../data/wfp_market_food_prices.csv",
-                        stringsAsFactors = FALSE)
-summary_table <- food_prices %>%
+
+summary_table <- food_price_data %>%
   filter(cur_name == "USD") %>%
   select(adm0_name, cur_name, mp_price) %>%
   group_by(adm0_name, cur_name) %>%
