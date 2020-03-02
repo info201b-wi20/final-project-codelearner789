@@ -17,7 +17,7 @@ prevelence_undernourishment_data <- read.csv("data/prevelence_undernourished.csv
 ```
 
 ```{r echo = FALSE}
-source("Summary Info Calculations.R")
+source("scripts/Summary Info Calculations.R")
 library(knitr)
 ```
 ## Introduction
@@ -32,7 +32,7 @@ The importance of our project is that the ability to understand that food scarci
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+plot(first_chart)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
