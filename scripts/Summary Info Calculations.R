@@ -8,24 +8,27 @@ source("index.Rmd")
 
 #organize data & Rename
 
-prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAreaName, TimePeriod, Value) %>%
+prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAreaName, TimePeriod, Value, Goal) %>%
   rename(
     location_name = GeoAreaName, 
     year = TimePeriod, 
-    value = Value) 
+    value = Value,
+    goal = Goal) 
 
 prev_undernourished_final_data <- as.data.frame(lapply(prev_undernourished_final_data,
                                                        function(x) gsub('\"', '', x)))
 prev_undernourished_final_data$year <- as.numeric(as.character(prev_undernourished_final_data$year))
 prev_undernourished_final_data$value <- as.numeric(as.character(prev_undernourished_final_data$value))
 prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(prev_undernourished_final_data), ]
-food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, mp_year, mp_price) %>%
+food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, mp_year, mp_price, um_id, um_name) %>%
   rename(
     country_name = adm0_name,
     commodity_purch = cm_name,
     currency = cur_name,
     year = mp_year,
-    price = mp_price
+    price = mp_price,
+    unit = um_id,
+    unit_type = um_name
   )
 
 #Creat summary info function for undernourished data set
@@ -61,8 +64,7 @@ get_summary_info <- function(prev_undernourished_final_data) {
       group_by(value) %>%
       summarize(lowest_num = min(value, na.rm = TRUE)) %>%
       arrange(lowest_num) %>%
-      top_n(1) %>%
-      pull(lowest_num)
+      
   ) 
   return(ret)
 }
