@@ -3,14 +3,6 @@ library("dplyr")
 library("ggplot2")
 library("stringr")
 rm(list = ls())
-#Load data set
-
-
-
-food_price_data <- read.csv("../data/wfp_market_food_prices.csv",
-                            stringsAsFactors = FALSE)
-prevelence_undernourishment_data <- read.csv("../data/prevelence_undernourished.csv", 
-                                             stringsAsFactors = FALSE)
 
 #organize data & Rename
 
@@ -65,16 +57,16 @@ get_summary_info <- function(prev_undernourished_final_data) {
       arrange(lowest_num) %>%
       head(n = 1L) %>%
       pull(lowest_num),
-    cr_nourishment_average_value = select(prev_undernourished_final_data, location_name, value) %>%
-      filter(location_name == "Costa Rica") %>%
+    z_nourishment_average_value = select(prev_undernourished_final_data, location_name, value) %>%
+      filter(location_name == "Zimbabwe") %>%
       summarize(value = mean(value)) %>%
       pull(value),
-    cr_value_most_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
-      filter(location_name == "Costa Rica") %>%
+    z_value_most_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
+      filter(location_name == "Zimbabwe") %>%
       summarize(value = max(value, na.rm = TRUE)) %>%
       pull(value),
-    cr_year_most_undernourished = select(prev_undernourished_final_data, location_name, value, year) %>%
-      filter(location_name == "Costa Rica") %>%
+    z_year_most_undernourished = select(prev_undernourished_final_data, location_name, value, year) %>%
+      filter(location_name == "Zimbabwe") %>%
       filter(value == max(value, na.rm = TRUE)) %>%
       pull(year)
   ) 
@@ -86,22 +78,22 @@ get_summary_info2 <- function(food_price_data_final) {
   ret <- list(
     currency = select(food_price_data_final, currency, country_name) %>%
       group_by(currency) %>%
-      filter(country_name == "Costa Rica") %>%
+      filter(country_name == "Zimbabwe") %>%
       head(n = 1L) %>%
       pull(currency),
     food_type = select(food_price_data_final, country_name, commodity_purch) %>%
-      filter(country_name == "Costa Rica") %>%
+      filter(country_name == "Zimbabwe") %>%
       group_by(commodity_purch) %>%
       summarize() %>%
       head(n = 3L) %>%
       pull(commodity_purch),
     unit_type = select(food_price_data_final, country_name, unit_type) %>%
-      filter(country_name == "Costa Rica") %>%
+      filter(country_name == "Zimbabwe") %>%
       group_by(unit_type) %>%
       head(n = 1L) %>%
       pull(unit_type),
     country = select(food_price_data_final, country_name) %>%
-      filter(country_name == "Costa Rica") %>%
+      filter(country_name == "Zimbabwe") %>%
       head(n = 1L) %>%
       pull()
   )
