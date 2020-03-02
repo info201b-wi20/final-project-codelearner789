@@ -3,19 +3,17 @@ library("dplyr")
 library("ggplot2")
 library("leaflet")
 
-food_prices_dataset <- read.csv("../data/wfp_market_food_prices.csv", stringsAsFactors = FALSE)
+one_country <- prev_undernourished_final_data %>%
+  filter(location_name == "Zimbabwe") %>%
+  group_by(year)%>%
+  summarize(values_in_percents = mean(value))
 
-one_country <- food_prices_dataset %>%
-  filter(adm0_name == "Costa Rica") %>%
-  group_by(mp_year)%>%
-  summarize(average_price = mean(mp_price))
-  
 first_chart <- function(df) {
   plot <- ggplot(data = df) +
-    geom_line(mapping = aes(x = mp_year,
-                            y = average_price,
-                            ))
+    geom_point(mapping = aes(x = year,
+                             y = values_in_percents,
+                             color = "Zimbabwe",
+                             ))
   return(plot)
 }
 plot_1 <- first_chart(one_country)
-
