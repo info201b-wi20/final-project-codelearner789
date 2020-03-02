@@ -4,7 +4,7 @@ library("ggplot2")
 library("stringr")
 rm(list = ls())
 #Load data set
-source("index.Rmd")
+
 
 #organize data & Rename
 
