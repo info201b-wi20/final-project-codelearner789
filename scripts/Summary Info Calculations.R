@@ -70,9 +70,35 @@ get_summary_info <- function(prev_undernourished_final_data) {
 }
 
 #Summary info function for food price data
-get_summary_info <- function(food_price_data_final) {
-  
+get_summary_info2 <- function(food_price_data_final) {
+  ret <- list(
+   
+    currency = select(food_price_data_final, currency, country_name) %>%
+      group_by(currency) %>%
+      filter(country_name == "Costa Rica") %>%
+      pull(currency),
+    food_type = select(food_price_data_final, country_name, commodity_purch) %>%
+      filter(country_name == "Costa Rica") %>%
+      group_by(commodity_purch) %>%
+      pull(commodity_purch),
+    unit_type = select(food_price_data_final, country_name, unit_type) %>%
+      filter(country_name == "Costa Rica") %>%
+      group_by(unit_type) %>%
+      pull(unit_type),
+    country = select(food_price_data_final, country_name) %>%
+      filter(country_name == "Costa Rica") %>%
+      pull(country_name)
+    
+  )
+  return(ret)
 }
+
+
+#3 food types
+#metric ton
+#filter for Costa Rica
+#pull currency
+get_summary_info2(food_price_data_final)
 
 
 
