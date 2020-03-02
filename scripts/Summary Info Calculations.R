@@ -6,6 +6,12 @@ rm(list = ls())
 #Load data set
 source("index.Rmd")
 
+
+food_price_data <- read.csv("../data/wfp_market_food_prices.csv",
+                            stringsAsFactors = FALSE)
+prevelence_undernourishment_data <- read.csv("../data/prevelence_undernourished.csv", 
+                                             stringsAsFactors = FALSE)
+
 #organize data & Rename
 
 prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAreaName, TimePeriod, Value, Goal) %>%
