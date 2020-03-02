@@ -14,6 +14,7 @@ food_price_data <- read.csv("data/wfp_market_food_prices.csv",
                             stringsAsFactors = FALSE)
 prevelence_undernourishment_data <- read.csv("data/prevelence_undernourished.csv", 
                                              stringsAsFactors = FALSE)
+colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data)=='ï..Goal'] <- "Goal"
 ```
 
 ```{r echo = FALSE}
