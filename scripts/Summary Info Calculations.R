@@ -45,8 +45,6 @@ get_summary_info <- function(prev_undernourished_final_data) {
       filter(first_year == min(first_year, na.rm = TRUE)) %>%
       pull(year),
     country_most_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
-      group_by(location_name) %>%
-      summarize(value = max(value, na.rm = TRUE)) %>%
       filter(value == max(value, na.rm = TRUE)) %>%
       pull(location_name),
     most_num_people_undernourished = select(prev_undernourished_final_data, value) %>%
@@ -55,16 +53,24 @@ get_summary_info <- function(prev_undernourished_final_data) {
       arrange(-highest_num) %>%
       top_n(1) %>%
       pull(highest_num),
-    country_least_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
-      group_by(location_name) %>%
-      summarize(value = min(value, na.rm = TRUE)) %>%
-      filter(value == min(value, na.rm = TRUE)) %>%
-      pull(location_name),
     least_num_undernourished = select(prev_undernourished_final_data, value) %>%
       group_by(value) %>%
       summarize(lowest_num = min(value, na.rm = TRUE)) %>%
       arrange(lowest_num) %>%
-      
+      head(n = 1L) %>%
+      pull(lowest_num),
+    cr_nourishment_average_value = select(prev_undernourished_final_data, location_name, value) %>%
+      filter(location_name == "Costa Rica") %>%
+      summarize(value = mean(value)) %>%
+      pull(value),
+    cr_value_most_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
+      filter(location_name == "Costa Rica") %>%
+      summarize(value = max(value, na.rm = TRUE)) %>%
+      pull(value),
+    cr_year_most_undernourished = select(prev_undernourished_final_data, location_name, value, year) %>%
+      filter(location_name == "Costa Rica") %>%
+      filter(value == max(value, na.rm = TRUE)) %>%
+      pull(year)
   ) 
   return(ret)
 }
