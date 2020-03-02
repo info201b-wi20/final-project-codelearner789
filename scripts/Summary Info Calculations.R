@@ -5,9 +5,9 @@ library("stringr")
 rm(list = ls())
 #Load data set
 
-food_price_data <- read.csv("data/wfp_market_food_prices.csv",
+food_price_data <- read.csv("../data/wfp_market_food_prices.csv",
                             stringsAsFactors = FALSE)
-prevelence_undernourishment_data <- read.csv("data/prevelence_undernourished.csv", 
+prevelence_undernourishment_data <- read.csv("../data/prevelence_undernourished.csv", 
                                              stringsAsFactors = FALSE)
 #organize data & Rename
 
