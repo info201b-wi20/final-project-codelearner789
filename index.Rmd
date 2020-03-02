@@ -17,7 +17,7 @@ prevelence_undernourishment_data <- read.csv("data/prevelence_undernourished.csv
 ```
 
 ```{r echo = FALSE}
-source("scripts/Summary Info Calculations.R")
+source("Summary Info Calculations.R")
 library(knitr)
 ```
 ## Introduction
