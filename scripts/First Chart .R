@@ -6,7 +6,7 @@ library("leaflet")
 food_prices_dataset <- read.csv("../data/wfp_market_food_prices.csv", stringsAsFactors = FALSE)
 
 one_country <- food_prices_dataset %>%
-  filter(adm0_name == "El Salvador") %>%
+  filter(adm0_name == "Costa Rica") %>%
   group_by(mp_year)%>%
   summarize(average_price = mean(mp_price))
   
