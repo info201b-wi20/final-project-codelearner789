@@ -10,6 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r echo = FALSE}
+food_price_data <- read.csv("data/wfp_market_food_prices.csv",
+                            stringsAsFactors = FALSE)
+prevelence_undernourishment_data <- read.csv("data/prevelence_undernourished.csv", 
+                                             stringsAsFactors = FALSE)
+```
+
+```{r echo = FALSE}
 source("Summary Info Calculations.R")
 library(knitr)
 ```
