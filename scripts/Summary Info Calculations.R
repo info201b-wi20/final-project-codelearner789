@@ -6,6 +6,12 @@ rm(list = ls())
 #Load data set
 
 
+
+food_price_data <- read.csv("../data/wfp_market_food_prices.csv",
+                            stringsAsFactors = FALSE)
+prevelence_undernourishment_data <- read.csv("../data/prevelence_undernourished.csv", 
+                                             stringsAsFactors = FALSE)
+
 #organize data & Rename
 
 prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAreaName, TimePeriod, Value, Goal) %>%
@@ -78,23 +84,26 @@ get_summary_info <- function(prev_undernourished_final_data) {
 #Summary info function for food price data
 get_summary_info2 <- function(food_price_data_final) {
   ret <- list(
-   
     currency = select(food_price_data_final, currency, country_name) %>%
       group_by(currency) %>%
       filter(country_name == "Costa Rica") %>%
+      head(n = 1L) %>%
       pull(currency),
     food_type = select(food_price_data_final, country_name, commodity_purch) %>%
       filter(country_name == "Costa Rica") %>%
       group_by(commodity_purch) %>%
+      summarize() %>%
+      head(n = 3L) %>%
       pull(commodity_purch),
     unit_type = select(food_price_data_final, country_name, unit_type) %>%
       filter(country_name == "Costa Rica") %>%
       group_by(unit_type) %>%
+      head(n = 1L) %>%
       pull(unit_type),
     country = select(food_price_data_final, country_name) %>%
       filter(country_name == "Costa Rica") %>%
-      pull(country_name)
-    
+      head(n = 1L) %>%
+      pull()
   )
   return(ret)
 }
