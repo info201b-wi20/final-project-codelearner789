@@ -7,8 +7,11 @@ rm(list = ls())
 
 #organize data & Rename
 
+
+
 prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAreaName, 
                                          TimePeriod, Value, Goal) %>%
+
   rename(
     location_name = GeoAreaName, 
     year = TimePeriod, 
