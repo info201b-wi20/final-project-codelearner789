@@ -17,8 +17,13 @@ all_entries <- food_price_data_final %>%
 
 second_chart <- function(df) {
   plot_2 <- ggplot(data = df) +
-    geom_bar(mapping = aes(x = commodity_purch, y = price), stat = "identity")
-  
+    geom_bar(mapping = aes(x = commodity_purch, y = price), stat = "identity") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    labs(
+      title = "Average price of each commodity type",
+      x = "Commodity",
+      y = "Average Price"
+    )
 return(plot_2)
 }
 
