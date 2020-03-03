@@ -47,7 +47,7 @@ get_summary_info <- function(prev_undernourished_final_data) {
       summarize(first_year = min(year)) %>%
       filter(first_year == min(first_year, na.rm = TRUE)) %>%
       pull(year),
-    country_most_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
+    country_most_undernourished <- select(prev_undernourished_final_data, location_name, value) %>%
       filter(value == max(value, na.rm = TRUE)) %>%
       pull(location_name),
     most_num_people_undernourished = select(prev_undernourished_final_data, value) %>%
@@ -105,12 +105,6 @@ get_summary_info2 <- function(food_price_data_final) {
   return(ret)
 }
 
-
-#3 food types
-#metric ton
-#filter for Costa Rica
-#pull currency
-get_summary_info2(food_price_data_final)
 
 
 
