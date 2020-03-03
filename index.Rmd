@@ -5,13 +5,14 @@ date: "2/27/2020"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r echo = FALSE}
+knitr::opts_chunk$set(message = FALSE, results = FALSE)
 ```
 
 ```{r echo = FALSE}
-source("scripts/Summary Info Calculations.R")
 library(knitr)
+source("scripts/Summary Info Calculations.R")
+source("scripts/Function for Summary Table.R")
 ```
 
 ```{r echo = FALSE}
@@ -52,38 +53,23 @@ food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, m
 
 ## Introduction
 
-This project aims to look generally at global data about Food Prices and Population Nourishment to further understand which areas are most impacted by undernourishment and when. Data and surveillance of these issues have great implications for how to proceed in dealing with a public health issue such as global food insecurity.  The source of our data comes from two datasets. The first dataset is a global food price tracker that was collected and compiled by the World Food Program. Their data focuses on providing information on food prices form developing countries. The second dataset that we are pulling from is data from the UN Sustainable Development Goals and the data provides the number of undernourished people per country from `r least_recent_year` to `r most_recent_year`. This project combines country data that overlaps between the two datasets to create a fuller picture of global food insecurity. 
+This project aims to look generally at global data about Food Prices and Population Nourishment to further understand which areas are most impacted by undernourishment and when. Data and surveillance of these issues have great implications for how to proceed in dealing with a public health issue such as global food insecurity.  The source of our data comes from two datasets. The first dataset is a global food price tracker that was collected and compiled by the World Food Program. Their data focuses on providing information on food prices form developing countries. The second dataset that we are pulling from is data from the UN Sustainable Development Goals and the data provides the number of undernourished people per country overtime. This project combines country data that overlaps between the two datasets to create a fuller picture of global food insecurity. 
 
 ``` {r, echo = FALSE}
-get_summary_info(prev_undernourished_final_data)
-get_summary_info2(food_price_data_final)
+undernourished_list <- get_summary_info(prev_undernourished_final_data)
+food_price_list <- get_summary_info2(food_price_data_final)
 ```
 
 ## Summary Information
+Undernourishment is a global issue. There are many contributing factors to undernourishment, one of which being global food prices. Our data looks at undernourishment percentages across different countries between `r undernourished_list[["least_recent_year"]]` and `r undernourished_list[["most_recent_year"]]`. Between these years the highest prevelance of undernourished people was `r undernourished_list[["most_num_people_undernourished"]]` percent in Angola. There were multiple countries that had the lowest prevelance of undernourishment at `r undernourished_list[["least_num_undernourished"]]` percent of the population. Of the countries that recorded food prices in `r food_price_list[["currency"]]`, `r food_price_list[["country"]]` had the highest prevelance of undernourishment at an average of `r undernourished_list[["z_nourishment_average_value"]]` percent across the years observed. In `r undernourished_list[["z_year_most_undernourished"]]`, `r food_price_list[["country"]]` faced its most occurances of undernourishment with `r undernourished_list[["z_value_most_undernourished"]]` percent of its population undernourished. When examining the food prices in Zimbabwe the three major food types analyzed were: `r food_price_list[["food_type"]]`. The quantities of each commodity were measured in `r food_price_list[["unit_type"]]`. In this report we will examine trends in undernourishment and food prices globally and in `r food_price_list[["country"]]`. 
 
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(first_chart)
+## Summary Table: Average Price of Commodities in Countries that use USD
+In this table we wanted to compare the prices of the most expensive food commodities between countries that use USD and KG. 
+```{r summary_table, echo = FALSE, results = 'asis'}
+library(knitr)
+kable(summary_table(food_price_data_final), col.names = c("Country", "Commodity", "Unit", "Unit Type", "Average Price"))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-## Summary Table
-```{r}
-
-```
-
+Foods with protein were found to be most expensive with chicken imported into Timor-Leste being the most expensive with an average price of $3.25 per 5 KG. Grains, particularly in Zimbabwe, were much less expensive. 
 ## Charts
-```{r}
 
-```
-
-```{r}
-
-```
-
-```{r}
-
-```

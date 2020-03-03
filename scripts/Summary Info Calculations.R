@@ -2,9 +2,17 @@
 library("dplyr")
 library("ggplot2")
 library("stringr")
-rm(list = ls())
-
-
+#Data Cleaning
+food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, mp_year, mp_price, um_id, um_name) %>%
+  rename(
+    country_name = adm0_name,
+    commodity_purch = cm_name,
+    currency = cur_name,
+    year = mp_year,
+    price = mp_price,
+    unit = um_id,
+    unit_type = um_name)
+    
 #Creat summary info function for undernourished data set
 get_summary_info <- function(prev_undernourished_final_data) {
   ret <- list(
@@ -51,7 +59,7 @@ get_summary_info <- function(prev_undernourished_final_data) {
 
 #Summary info function for food price data
 get_summary_info2 <- function(food_price_data_final) {
-  ret <- list(
+  ret2 <- list(
     currency = select(food_price_data_final, currency, country_name) %>%
       group_by(currency) %>%
       filter(country_name == "Zimbabwe") %>%
@@ -73,7 +81,7 @@ get_summary_info2 <- function(food_price_data_final) {
       head(n = 1L) %>%
       pull()
   )
-  return(ret)
+  return(ret2)
 }
 
 
