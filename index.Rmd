@@ -92,6 +92,7 @@ Undernourishment is a global issue. There are many contributing factors to under
 
 ## Summary Table: Average Price of Commodities in Countries that use USD
 In this table we wanted to compare the prices of the most expensive food commodities between countries that use USD and KG. 
+
 ```{r summary_table, echo = FALSE, results = 'asis'}
 library(knitr)
 
@@ -105,13 +106,16 @@ Foods with protein were found to be most expensive with chicken imported into Ti
 ## Chart 1
 
 This chart attempts to show the years in which Zimbabwe faced the highest prevelance of undernourishment and how nourishment in Zimbabwe changed overtime. 
+
 ```{r first_chart, echo = FALSE}
 plot_1
 ```
+
 This shows that 2015 was the peak prevelance of undernourishment in Zimbabwe. It seems to have rapidly risen since 2011 and may be on the decline now. 
 
 ## Chart 2
 This chart attempts to show Zimbabwe's commodity prices in 2015, the year Zimbabwe had the highest percentage of their population undernourished. 
+
 ```{r plot_2, echo = FALSE}
 plot_2
 ```
@@ -121,6 +125,7 @@ This chart shows that Beans were the most expensive commodity in 2015 with a pri
 ## Chart 3 
 
 This chart attempts to visualize the global trend of undernourishment between 2000 to 2017.
+
 ```{r plot_3, echo = FALSE}
 plot_3
 ```
