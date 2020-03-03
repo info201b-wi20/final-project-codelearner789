@@ -10,6 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r echo = FALSE}
+source("scripts/Summary Info Calculations.R")
+library(knitr)
+```
+
+```{r echo = FALSE}
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
                             stringsAsFactors = FALSE)
 prevelence_undernourishment_data <- read.csv("data/prevelence_undernourished.csv", 
@@ -18,15 +23,44 @@ colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_
 ```
 
 ```{r echo = FALSE}
-source("Summary Info Calculations.R")
-library(knitr)
+#cleaning up data sets
+prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAreaName, 
+                                         TimePeriod, Value) %>%
+  rename(
+    location_name = GeoAreaName, 
+    year = TimePeriod, 
+    value = Value)
+
+prev_undernourished_final_data <- filter(prev_undernourished_final_data, location_name != "World")
+prev_undernourished_final_data <- as.data.frame(lapply(prev_undernourished_final_data,
+                                                       function(x) gsub('\"', '', x)))
+prev_undernourished_final_data$year <- as.numeric(as.character(prev_undernourished_final_data$year))
+prev_undernourished_final_data$value <- as.numeric(as.character(prev_undernourished_final_data$value))
+prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(prev_undernourished_final_data), ]
+
+food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, mp_year, mp_price, um_id, um_name) %>%
+  rename(
+    country_name = adm0_name,
+    commodity_purch = cm_name,
+    currency = cur_name,
+    year = mp_year,
+    price = mp_price,
+    unit = um_id,
+    unit_type = um_name
+  )
 ```
+
 ## Introduction
 
 This project aims to look generally at global data about Food Prices and Population Nourishment to further understand which areas are most impacted by undernourishment and when. Data and surveillance of these issues have great implications for how to proceed in dealing with a public health issue such as global food insecurity.  The source of our data comes from two datasets. The first dataset is a global food price tracker that was collected and compiled by the World Food Program. Their data focuses on providing information on food prices form developing countries. The second dataset that we are pulling from is data from the UN Sustainable Development Goals and the data provides the number of undernourished people per country from `r least_recent_year` to `r most_recent_year`. This project combines country data that overlaps between the two datasets to create a fuller picture of global food insecurity. 
 
+``` {r, echo = FALSE}
+get_summary_info(prev_undernourished_final_data)
+get_summary_info2(food_price_data_final)
+```
 
 ## Summary Information
+
 
 You can also embed plots, for example:
 
