@@ -1,6 +1,6 @@
 ---
-title: "Connections between Food prices, population nourishment, and poverty"
-author: "Brook Chen"
+title: "Connections between Food Prices, Population Nourishment, and Poverty"
+author: "Brook Chen, Mo Tilmo, Emma Schnee, Madeline Kramer"
 date: "2/27/2020"
 output: html_document
 ---
@@ -23,9 +23,6 @@ library(knitr)
 ```
 ## Introduction
 
-HEllo this is madeline 
-
-
 The importance of our project is that the ability to understand that food scarcity/accessibility is a public health issue and we are interested in how data can drive analysis of social issues. The source of our data comes from three datasets. The first dataset is a global food price tracker that was collected and compiled by the World Food Program. Their data focuses on providing information on food prices form developing countries. The second dataset that we are pulling from is data from the UN Sustainable Development Goals and the data provides the number of undernourished people per country from 2000 to 2017. The third dataset is a dataset that is compiled from the World Bank. The data collected is recieved from countries that participate and share data with the World Bank. The data is about poverty and equity levels from around the world.  
 
 ## Summary Information
@@ -37,3 +34,21 @@ plot(first_chart)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Summary Table
+```{r}
+
+```
+
+## Charts
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
