@@ -7,11 +7,11 @@ one_country <- prev_undernourished_final_data %>%
   group_by(year)%>%
   summarize(values_in_percents = mean(value))
   
-first_chart <- function(df) {
-  plot <- ggplot(data = df) +
+first_chart <- function(prev_undernourished_final_data) {
+  plot <- ggplot(data = prev_undernourished_final_data) +
     geom_point(mapping = aes(x = year,
                             y = values_in_percents,
-                            color = "Zimbabwe",
+                            color = "Zimbabwe"
                             ))
   return(plot)
 }
