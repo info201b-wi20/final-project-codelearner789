@@ -13,7 +13,8 @@ first_chart <- function(df) {
     geom_point(mapping = aes(x = year,
                              y = values_in_percents,
                              color = "Zimbabwe",
-                             ))
+                             )) +
+               ggtitle("% of Population Undernourished in Zimbabwe")
   return(plot)
 }
 plot_1 <- first_chart(one_country)

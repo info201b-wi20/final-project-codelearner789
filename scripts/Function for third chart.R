@@ -15,10 +15,10 @@ create_plot_funct <- function(df) {
   plot_3 <- ggplot(data=df, aes(year,avg_percent)) +
     geom_point() +
     geom_smooth(method="lm", se=F) + 
-    labs(subtitle="malnourishment rate by year",
-         y="average_percent of malnourishment",
+    labs(subtitle="average percentage by year",
+         y="average percent of global population undernourished",
          x="year",
-         title="Examining global average malnourishment rate by year",
+         title="Examining Global Undernourishment",
          caption="Source: UN Sustainability Goals")
   return(plot_3)
 }
