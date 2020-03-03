@@ -5,41 +5,55 @@ date: "2/27/2020"
 output: html_document
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(message = FALSE, results = FALSE)
-```
-
-```{r echo = FALSE}
+```{r echo = FALSE, message = FALSE, results = FALSE}
+knitr::opts_chunk$set(message = FALSE)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(leaflet)
 library(knitr)
-source("scripts/Summary Info Calculations.R")
-source("scripts/Function for Summary Table.R")
 ```
 
 ```{r echo = FALSE}
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
-                            stringsAsFactors = FALSE)
-prevelence_undernourishment_data <- read.csv("data/prevelence_undernourished.csv", 
-                                             stringsAsFactors = FALSE)
-colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data)=='ï..Goal'] <- "Goal"
+  stringsAsFactors = FALSE
+)
+prevelence_undernourishment_data <-
+  read.csv("data/prevelence_undernourished.csv",
+  stringsAsFactors = FALSE
+)
+colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "ï..Goal"] <- "Goal"
 ```
 
-```{r echo = FALSE}
-#cleaning up data sets
-prev_undernourished_final_data <- select(prevelence_undernourishment_data, GeoAreaName, 
-                                         TimePeriod, Value) %>%
+```{r echo = FALSE, message = FALSE, results = FALSE, include = FALSE}
+knitr::opts_chunk$set(message = FALSE)
+# cleaning up data sets
+prev_undernourished_final_data <- select(
+  prevelence_undernourishment_data, GeoAreaName,
+  TimePeriod, Value
+) %>%
   rename(
-    location_name = GeoAreaName, 
-    year = TimePeriod, 
-    value = Value)
+    location_name = GeoAreaName,
+    year = TimePeriod,
+    value = Value
+  )
 
-prev_undernourished_final_data <- filter(prev_undernourished_final_data, location_name != "World")
-prev_undernourished_final_data <- as.data.frame(lapply(prev_undernourished_final_data,
-                                                       function(x) gsub('\"', '', x)))
-prev_undernourished_final_data$year <- as.numeric(as.character(prev_undernourished_final_data$year))
-prev_undernourished_final_data$value <- as.numeric(as.character(prev_undernourished_final_data$value))
-prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(prev_undernourished_final_data), ]
+prev_undernourished_final_data <- filter(prev_undernourished_final_data,
+                                         location_name != "World")
+prev_undernourished_final_data <- as.data.frame(lapply(
+  prev_undernourished_final_data,
+  function(x) gsub('\"', "", x)
+))
+prev_undernourished_final_data$year <- as.numeric(
+  as.character(prev_undernourished_final_data$year))
+prev_undernourished_final_data$value <- as.numeric(
+  as.character(prev_undernourished_final_data$value))
+prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(
+  prev_undernourished_final_data), ]
 
-food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, mp_year, mp_price, um_id, um_name) %>%
+food_price_data_final <- select(food_price_data,
+                                adm0_name, cm_name, cur_name, mp_year,
+                                mp_price, um_id, um_name) %>%
   rename(
     country_name = adm0_name,
     commodity_purch = cm_name,
@@ -51,6 +65,14 @@ food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, m
   )
 ```
 
+```{r echo = FALSE}
+library(knitr)
+source("scripts/Summary Info Calculations.R")
+source("scripts/Function for Summary Table.R")
+source("scripts/First_Chart_Function.R")
+source("scripts/Function for second chart.R")
+source("scripts/Function for third chart.R")
+```
 ## Introduction
 
 This project aims to look generally at global data about Food Prices and Population Nourishment to further understand which areas are most impacted by undernourishment and when. Data and surveillance of these issues have great implications for how to proceed in dealing with a public health issue such as global food insecurity.  The source of our data comes from two datasets. The first dataset is a global food price tracker that was collected and compiled by the World Food Program. Their data focuses on providing information on food prices form developing countries. The second dataset that we are pulling from is data from the UN Sustainable Development Goals and the data provides the number of undernourished people per country overtime. This project combines country data that overlaps between the two datasets to create a fuller picture of global food insecurity. 
@@ -67,9 +89,36 @@ Undernourishment is a global issue. There are many contributing factors to under
 In this table we wanted to compare the prices of the most expensive food commodities between countries that use USD and KG. 
 ```{r summary_table, echo = FALSE, results = 'asis'}
 library(knitr)
-kable(summary_table(food_price_data_final), col.names = c("Country", "Commodity", "Unit", "Unit Type", "Average Price"))
+
+kable(summary_table(food_price_data_final),
+      col.names = c("Country", "Commodity",
+                    "Unit", "Unit Type", "Average Price"))
 ```
 
 Foods with protein were found to be most expensive with chicken imported into Timor-Leste being the most expensive with an average price of $3.25 per 5 KG. Grains, particularly in Zimbabwe, were much less expensive. 
-## Charts
+
+## Chart 1
+
+This chart attempts to show the years in which Zimbabwe faced the highest prevelance of undernourishment and how nourishment in Zimbabwe changed overtime. 
+```{r first_chart, echo = FALSE}
+plot_1
+```
+This shows that 2015 was the peak prevelance of undernourishment in Zimbabwe. It seems to have rapidly risen since 2011 and may be on the decline now. 
+
+## Chart 2
+This chart attempts to show Zimbabwe's commodity prices in 2015, the year Zimbabwe had the highest percentage of their population undernourished. 
+```{r plot_2, echo = FALSE}
+plot_2
+```
+
+This chart shows that Beans were the most expensive commodity in 2015 with a price close to $3 USD. Maize and other grains in general were much cheaper. As protein is an important nutrient, the high price of beans which contain protein may have contributed to the high percentage of the population that was undernourished in 2015. 
+
+## Chart 3 
+
+This chart attempts to visualize the global trend of undernourishment between 2000 to 2017.
+```{r plot_3, echo = FALSE}
+plot_3
+```
+
+This chart shows a downward trend in global undernourishment, however after 2015 it did appear to be increasing, with a quick downturn towards 2017. 
 

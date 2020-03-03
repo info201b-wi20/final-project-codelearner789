@@ -3,7 +3,9 @@ library("dplyr")
 library("ggplot2")
 library("stringr")
 #Data Cleaning
-food_price_data_final <- select(food_price_data, adm0_name, cm_name, cur_name, mp_year, mp_price, um_id, um_name) %>%
+food_price_data_final <- select(food_price_data, adm0_name,
+                                cm_name, cur_name, mp_year, mp_price,
+                                um_id, um_name) %>%
   rename(
     country_name = adm0_name,
     commodity_purch = cm_name,
@@ -26,10 +28,12 @@ get_summary_info <- function(prev_undernourished_final_data) {
       summarize(first_year = min(year)) %>%
       filter(first_year == min(first_year, na.rm = TRUE)) %>%
       pull(year),
-    country_most_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
+    country_most_undernourished = select(
+      prev_undernourished_final_data, location_name, value) %>%
       filter(value == max(value, na.rm = TRUE)) %>%
       pull(location_name),
-    most_num_people_undernourished = select(prev_undernourished_final_data, value) %>%
+    most_num_people_undernourished = select(
+      prev_undernourished_final_data, value) %>%
       group_by(value) %>%
       summarize(highest_num = max(value, na.rm = TRUE)) %>%
       arrange(-highest_num) %>%
@@ -41,19 +45,25 @@ get_summary_info <- function(prev_undernourished_final_data) {
       arrange(lowest_num) %>%
       head(n = 1L) %>%
       pull(lowest_num),
-    z_nourishment_average_value = select(prev_undernourished_final_data, location_name, value) %>%
+    z_nourishment_average_value = select(
+      prev_undernourished_final_data,
+      location_name, value) %>%
       filter(location_name == "Zimbabwe") %>%
       summarize(value = mean(value)) %>%
       pull(value),
-    z_value_most_undernourished = select(prev_undernourished_final_data, location_name, value) %>%
+    z_value_most_undernourished = select(
+      prev_undernourished_final_data,
+      location_name, value) %>%
       filter(location_name == "Zimbabwe") %>%
       summarize(value = max(value, na.rm = TRUE)) %>%
       pull(value),
-    z_year_most_undernourished = select(prev_undernourished_final_data, location_name, value, year) %>%
+    z_year_most_undernourished = select(
+      prev_undernourished_final_data,
+      location_name, value, year) %>%
       filter(location_name == "Zimbabwe") %>%
       filter(value == max(value, na.rm = TRUE)) %>%
       pull(year)
-  ) 
+  )
   return(ret)
 }
 
@@ -83,8 +93,3 @@ get_summary_info2 <- function(food_price_data_final) {
   )
   return(ret2)
 }
-
-
-
-
-
