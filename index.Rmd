@@ -14,6 +14,10 @@ library(leaflet)
 library(knitr)
 ```
 
+<!-- Line of code needed to fix one of the group member's lines for colnames is included. For one of the 
+group member's computers, the dataset for undernourishment did not render the correct column name
+so a fix was needed to make sure the name was correct. This was advice from a TA -->
+
 ```{r echo = FALSE}
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
   stringsAsFactors = FALSE
@@ -22,6 +26,7 @@ prevelence_undernourishment_data <-
   read.csv("data/prevelence_undernourished.csv",
   stringsAsFactors = FALSE
 )
+ 
 colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "ï..Goal"] <- "Goal"
 ```
 
