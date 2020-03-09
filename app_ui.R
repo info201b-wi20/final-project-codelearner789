@@ -2,6 +2,9 @@ library("shiny")
 library("dplyr")
 library("ggplot2")
 library("plotly")
+source("vis_1.R")
+source("vis_2.R")
+source("vis_3.R")
 # Introduction
 intro_tab <- tabPanel(
   "Introduction",
@@ -9,18 +12,9 @@ intro_tab <- tabPanel(
   
 )
 
-# Visualization 1
-vis_1 <- tabPanel(
-  "First Visualization"
-)
-# Visualization 2
-vis_2 <- tabPanel(
-  "Second Visualization"
-)
-# Visualization 3
-vis_3 <- tabPanel(
-  "Third Visualization"
-)
+
+
+
 # Conclusion
 concluding_tab <- tabPanel(
   "Ending Remarks"
