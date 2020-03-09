@@ -4,7 +4,8 @@ library("ggplot2")
 library("plotly")
 # Introduction
 intro_tab <- tabPanel(
-  "Introduction"
+  "Introduction",
+  tags$h1("Exploring Food Accessibility and Prices")
   
 )
 
@@ -25,12 +26,11 @@ concluding_tab <- tabPanel(
   "Ending Remarks"
 )
 
-ui <- navBarPage(
-  "Exploring food accessibility an malnourishment",
+ui <- navbarPage(
+  "Exploring food accessibility and malnourishment",
   intro_tab,
   vis_1,
   vis_2,
   vis_3,
   concluding_tab
-  
 )
