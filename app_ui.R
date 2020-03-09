@@ -8,8 +8,26 @@ source("vis_3.R")
 # Introduction
 intro_tab <- tabPanel(
   "Introduction",
-  tags$h1("Exploring Food Accessibility and Prices")
-  
+  titlePanel(tags$h1("Exploring Food Accessibility and Prices")),
+  fluidPage(
+    p("This project aims to look generally at global data about Food Prices 
+    and Population Nourishment to further understand which areas are most
+    impacted by undernourishment and when. Data and surveillance of these
+    issues have great implications for how to proceed in dealing with a public
+    health issue such as global food insecurity. The source of our data comes
+    from two datasets. The first dataset is a global food price tracker that
+    was collected and compiled by the World Food Program. Their data focuses
+    on providing information on food prices form developing countries. 
+    The second dataset that we are pulling from is data from the UN 
+    Sustainable Development Goals and the data provides the number of
+    undernourished people per country overtime. This project combines
+    country data that overlaps between the two datasets to create a
+    fuller picture of global food insecurity. For this project, we
+    decided to create 3 visualizations to illustrate specific trends
+    in food malnourishment and food accessibility as well as
+    trends in food prices."),
+    img(src = "https://miro.medium.com/max/620/1*qF6t1pzpiunMD-8PK7fmuQ.jpeg")
+  )
 )
 
 
