@@ -4,7 +4,7 @@ library("ggplot2")
 library("plotly")
 
 server3 <- function(input, output) {
-  output$vis1 <- renderPlot({
+  output$vis3 <- renderPlot({
     df <- prev_undernourished_final_data
     title <- paste0("Coutry Undernourishment Rates (", 
                     input$slider_value, ") 2000 - 2017")
@@ -15,6 +15,13 @@ server3 <- function(input, output) {
            y = paste0("Undernourishment Values: ",
                       input$slider_value))
     vis_1
+  })
+  output$info3 <- renderText({
+    mess_info3 <- paste0(
+      "x = ", input$plot_click3$x,
+      " y = ", input$plot_click3$y
+    )
+    mess_info3
   })
 }
 

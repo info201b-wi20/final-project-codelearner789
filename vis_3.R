@@ -38,9 +38,8 @@ var1_vis3 <- sidebarLayout(
     ),
   mainPanel(
     h3("Find Race Percentages by State"),
-    plotOutput("vis1", click = "plot_click1"),
-    verbatimTextOutput("info1"),
-    verbatimTextOutput("range")
+    plotOutput("vis3", click = "plot_click3"),
+    verbatimTextOutput("info3")
   )
 )
 
@@ -48,11 +47,11 @@ var1_vis3 <- sidebarLayout(
 vis_3 <- tabPanel(
   "Undernourishment Rates",
   titlePanel("Find Which Countries Have Similar Undernourishment Rates"),
-  p("In this page we are trying to answer the question of 
-  which countries are similar in the amount of 
-  undernourishment their populations are facing. 
+  p("In this page we are trying to answer the question of
+  which countries are similar in the amount of
+  undernourishment their populations are facing.
   You can use the graphics the select a range of values
-    and see where countries fall within those 
+  and see where countries fall within those
     values of undernourishment."),
-  var1_vis3
-)
+  var1_vis3)
+ 
