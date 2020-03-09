@@ -3,7 +3,6 @@ library("dplyr")
 library("ggplot2")
 library("plotly")
 
-# Visualization 2
-vis_2 <- tabPanel(
-  "Second Visualization"
-)
+server2 <- function(input, output) {
+  
+}
