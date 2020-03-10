@@ -46,3 +46,4 @@ ui <- navbarPage(
   vis_3,
   concluding_tab
 )
+
