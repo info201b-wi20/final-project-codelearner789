@@ -11,6 +11,7 @@ food_price_data <- read.csv("data/wfp_market_food_prices.csv",
 colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "?..Goal"] <- "Goal"
 
 all_countries <- food_price_data %>%
+  filter(cur_name == "USD") %>%
   group_by(adm0_name) %>%
   summarize(num_countries = n()) %>%
   pull(adm0_name)
@@ -28,6 +29,7 @@ food_price_data_final <- select(food_price_data, adm0_name,
     unit_type = um_name)
 
 all_years <- food_price_data_final %>%
+  filter(currency == "USD") %>%
   group_by(year) %>%
   summarise(num_recorded = n()) %>%
   pull(year)
