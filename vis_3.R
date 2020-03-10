@@ -32,15 +32,26 @@ prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(
 #Create Variables & Visualization for Page 3
 var1_vis3 <- sidebarLayout(
   sidebarPanel(
-    checkboxGroupInput("country3",
-                label = h3("Select Countries"),
-                choices = list("Zimbabwe" = "Zimbabwe",
-                               "Honduras" = "Honduras",
-                               "Timor-Leste" = "Timor-Leste",
-                               "Costa Rica" = "Costa Rica",
-                               "El Salvador" = "El Salvador",
-                               "Panama" = "Panama"),
-                selected = "Zimbabwe")
+    selectInput("year3",
+                label = h3("Select Year"),
+                choices = list("2000" = "2000",
+                               "2001" = "2001",
+                               "2002" = "2002",
+                               "2003" = "2003",
+                               "2004" = "2004",
+                               "2005" = "2005",
+                               "2006" = "2006",
+                               "2007" = "2007",
+                               "2008" = "2008",
+                               "2009" = "2009",
+                               "2010" = "2010",
+                               "2011" = "2011",
+                               "2012" = "2012",
+                               "2013" = "2013",
+                               "2014" = "2014",
+                               "2015" = "2015",
+                               "2016" = "2016"),
+                selected = "2016")
     ),
   mainPanel(
     h3("Compare Undernourishment In Countries Where Food Prices are USD"),
@@ -52,12 +63,10 @@ var1_vis3 <- sidebarLayout(
 # Visualization 3
 vis_3 <- tabPanel(
   "Undernourishment Rates",
-  titlePanel("Find Which Countries Have Similar Undernourishment Rates"),
-  p("In this page we are trying to answer the question of
-  which countries are similar in the amount of
-  undernourishment their populations are facing.
-  You can use the graphics the select a range of values
-  and see where countries fall within those
-    values of undernourishment."),
+  titlePanel("Compare Countries Undernourishment by Year"),
+  p("In this page we are trying to look closer at the countries 
+  whose food price data was measured in USD in order to compare undernourishment 
+  levels in different years. 
+  You can select a year and see what the countries undernourishment level is."),
   var1_vis3)
    
