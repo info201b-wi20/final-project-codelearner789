@@ -10,15 +10,12 @@ server3 <- function(input, output) {
       filter(location_name %in% c("Zimbabwe", "Honduras", 
                                   "Timor-Leste", "Costa Rica", "El Salvador",
                                   "Honduras", "Panama"))
-    title <- paste0("Coutry Undernourishment Rates (", 
-                    input$slider_value, ") 2000 - 2017")
     vis_3 <- ggplot(data = df3) +
-      geom_line(mapping = aes_string(x = "year", y = input$slider_value), 
-                colour = "location_name") +
-      labs(title = title, 
+      geom_line(mapping = aes_string(x = "year", y = "value",
+                color = input$country3)) +
+      labs(title = "Coutry Undernourishment Rates 2000-2017", 
            x = "Year 2000-2017",
-           y = paste0("Undernourishment Values: ",
-                      input$slider_value))
+           y = "Undernourishment Values")
     vis_3
   })
   output$info3 <- renderText({

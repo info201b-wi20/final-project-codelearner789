@@ -32,12 +32,18 @@ prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(
 #Create Variables & Visualization for Page 3
 var1_vis3 <- sidebarLayout(
   sidebarPanel(
-    sliderInput("slider_value",
-                label = h3("Choose a Range of Values"),
-                min = 2,  max = 75, value = c(40, 50))
+    checkboxGroupInput("country3",
+                label = h3("Select Countries"),
+                choices = list("Zimbabwe" = "Zimbabwe",
+                               "Honduras" = "Honduras",
+                               "Timor-Leste" = "Timor-Leste",
+                               "Costa Rica" = "Costa Rica",
+                               "El Salvador" = "El Salvador",
+                               "Panama" = "Panama"),
+                selected = "Zimbabwe")
     ),
   mainPanel(
-    h3("Find Race Percentages by State"),
+    h3("Compare Undernourishment In Countries Where Food Prices are USD"),
     plotOutput("vis3", click = "plot_click3"),
     verbatimTextOutput("info3")
   )
@@ -54,4 +60,4 @@ vis_3 <- tabPanel(
   and see where countries fall within those
     values of undernourishment."),
   var1_vis3)
- 
+   
