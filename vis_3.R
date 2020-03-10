@@ -1,3 +1,7 @@
+library("shiny")
+library("dplyr")
+library("ggplot2")
+library("plotly")
 # load data
 
 prevelence_undernourishment_data <-
@@ -54,8 +58,8 @@ var1_vis3 <- sidebarLayout(
                 selected = "2016")
     ),
   mainPanel(
-    h3("Compare Undernourishment In Countries Where Food Prices are USD"),
-    plotOutput("vis3", click = "plot_click3"),
+    tags$h3("Compare Undernourishment In Countries Where Food Prices are USD"),
+    plotOutput("vis3", hover = "plot_click3"),
     verbatimTextOutput("info3")
   )
 )

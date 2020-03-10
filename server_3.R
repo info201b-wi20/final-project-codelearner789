@@ -22,11 +22,11 @@ server3 <- function(input, output) {
     vis_3
   })
   output$info3 <- renderText({
-    mess_info3 <- paste0(
+   mess_info3 <- paste0(
       "x = ", input$plot_click3$x,
-      " y = ", input$plot_click3$y
-    )
-    mess_info3
+     " y = ", input$plot_click3$y
+   )
+   mess_info3
   })
 }
 
