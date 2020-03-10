@@ -50,7 +50,7 @@ choose_commodity <- sidebarLayout(
   ),
   mainPanel(
     tags$h2("Average prices of commodities for Different Countries"),
-    plotOutput("plot_no2")
+    plotlyOutput("plot_no2")
   )
 )
 
