@@ -23,7 +23,7 @@ food_price_data_final <- select(food_price_data, adm0_name,
     unit_type = um_name)
 
 server2 <- function(input, output) {
-  output$plot_no2 <- renderPlot({
+  output$plot_no2 <- renderPlotly({
     
     df <- food_price_data_final %>%
       filter(year == input$year) %>%
