@@ -53,11 +53,11 @@ choose_commodity <- sidebarLayout(
     plotOutput("plot_no2")
   )
 )
-<<<<<<< HEAD
-=======
+#<<<<<<< HEAD
+#=======
 
 vis_2 <- tabPanel(
   "Exploring Commodity Prices",
   choose_commodity
 )
->>>>>>> c090bd0aa8edd6ef620706f8da256f2319fa50a6
+#>>>>>>> c090bd0aa8edd6ef620706f8da256f2319fa50a6
