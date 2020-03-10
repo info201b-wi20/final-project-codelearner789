@@ -8,9 +8,14 @@ source("vis_3.R")
 # Introduction
 intro_tab <- tabPanel(
   "Introduction",
-  titlePanel(tags$h1("Exploring Food Accessibility and Prices")),
+  titlePanel(tags$h1(
+    id = "intro_sec",
+    "Exploring Food Accessibility and Prices"
+    )),
   fluidPage(
-    p("This project aims to look generally at global data about Food Prices 
+    tags$p(
+      id = "intro_descrip",
+    "This project aims to look generally at global data about Food Prices 
     and Population Nourishment to further understand which areas are most
     impacted by undernourishment and when. Data and surveillance of these
     issues have great implications for how to proceed in dealing with a public
@@ -38,12 +43,16 @@ concluding_tab <- tabPanel(
   "Ending Remarks"
 )
 
-ui <- navbarPage(
-  "Exploring food accessibility and malnourishment",
-  intro_tab,
-  vis_1,
-  vis_2,
-  vis_3,
-  concluding_tab
+ui <- fluidPage(
+  includeCSS("styles.css"),
+  navbarPage(
+    "Exploring food accessibility and malnourishment",
+    intro_tab,
+    vis_1,
+    vis_2,
+    vis_3,
+    concluding_tab
+  )
 )
+  
 

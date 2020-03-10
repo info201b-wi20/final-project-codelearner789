@@ -1,0 +1,27 @@
+#intro_sec {
+  color: blue;
+  font-family: sans-serif;
+  font-size: 40px;
+}
+
+#intro_descrip {
+  font-size: 17px;
+  font-family: Times New Roman;
+}
+
+#comp_heading {
+  font-family: Georgia;
+  color: yellow;
+  background-color: black;
+}
+
+#price_compare {
+  font-size: 14px;
+  font-family: serif;
+}
+
+#vis3_descrip {
+  font-size: 15px;
+  color: blue;
+  font-family: Georgia;
+}

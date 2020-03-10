@@ -67,7 +67,9 @@ var1_vis3 <- sidebarLayout(
 vis_3 <- tabPanel(
   "Undernourishment Rates",
   titlePanel("Compare Countries Undernourishment by Year"),
-  p("In this page we are trying to look closer at the countries 
+  tags$p(
+    id = "vis3_descrip",
+  "In this page we are trying to look closer at the countries 
   whose food price data was measured in USD in order to compare undernourishment 
   levels in different years. 
   You can select a year and see what the countries undernourishment level is."),

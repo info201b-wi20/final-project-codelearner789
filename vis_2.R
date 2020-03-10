@@ -51,7 +51,9 @@ choose_commodity <- sidebarLayout(
     )
   ),
   mainPanel(
-    tags$h2("Average prices of commodities for Different Countries"),
+    tags$h2(
+      id = "comp_heading",
+      "Average prices of commodities for Different Countries"),
     tags$p(
       id = "price_compare",
       "This portion of the report aims to examine the average prices
