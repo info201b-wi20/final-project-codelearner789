@@ -8,7 +8,7 @@ prevelence_undernourishment_data <-
            stringsAsFactors = FALSE)
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
                             stringsAsFactors = FALSE)
-colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "ï..Goal"] <- "Goal"
+colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "?..Goal"] <- "Goal"
 
 food_price_data_final <- select(food_price_data, adm0_name,
                                 cm_name, cur_name, mp_year, mp_price,

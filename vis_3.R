@@ -59,8 +59,7 @@ var1_vis3 <- sidebarLayout(
     ),
   mainPanel(
     tags$h3("Compare Undernourishment In Countries Where Food Prices are USD"),
-    plotOutput("vis3", hover = "plot_click3"),
-    verbatimTextOutput("info3")
+    plotlyOutput("vis3")
   )
 )
 
