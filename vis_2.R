@@ -8,7 +8,7 @@ prevelence_undernourishment_data <-
            stringsAsFactors = FALSE)
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
                             stringsAsFactors = FALSE)
-colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "ï..Goal"] <- "Goal"
+colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "?..Goal"] <- "Goal"
 
 all_countries <- food_price_data %>%
   group_by(adm0_name) %>%
@@ -53,8 +53,11 @@ choose_commodity <- sidebarLayout(
     plotOutput("plot_no2")
   )
 )
+<<<<<<< HEAD
+=======
 
 vis_2 <- tabPanel(
   "Exploring Commodity Prices",
   choose_commodity
 )
+>>>>>>> c090bd0aa8edd6ef620706f8da256f2319fa50a6
