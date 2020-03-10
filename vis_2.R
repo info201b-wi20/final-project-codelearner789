@@ -41,17 +41,28 @@ choose_commodity <- sidebarLayout(
       inputId = "Country",
       label = "Choose a country",
       choices = all_countries,
-      selected = all_countries[1],
+      selected = all_countries[6],
     ),
     selectInput(
       inputId = "year",
       label = "Pick year",
       choices = all_years,
-      selected = all_years[22]
+      selected = all_years[12]
     )
   ),
   mainPanel(
     tags$h2("Average prices of commodities for Different Countries"),
+    tags$p(
+      id = "price_compare",
+      "This portion of the report aims to examine the average prices
+      of each commodity sold in any given country that uses US Dollars
+      as its main currency. We decided to just stick to exploring the
+      average prices of each commodity for countries that use USD
+      as their currency so that the user can get more consistent
+      comparisons of commodity prices in any given country for any
+      given year. Keep in mind, not every country has data for every
+      year listed as an option."
+    ),
     plotlyOutput("plot_no2")
   )
 )
