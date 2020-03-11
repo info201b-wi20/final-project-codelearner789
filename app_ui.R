@@ -2,6 +2,7 @@ library("shiny")
 library("dplyr")
 library("ggplot2")
 library("plotly")
+library("shinythemes")
 source("vis_1.R")
 source("vis_2.R")
 source("vis_3.R")
@@ -86,7 +87,9 @@ concluding_tab <- tabPanel(
 
 ui <- fluidPage(
   includeCSS("styles.css"),
+  shinythemes::themeSelector(),
   navbarPage(
+    theme = "cerulean",
     "Exploring food accessibility and malnourishment",
     intro_tab,
     vis_1,
