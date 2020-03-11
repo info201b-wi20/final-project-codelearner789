@@ -21,7 +21,7 @@ food_price_data_final <- select(
     unit = um_id,
     unit_type = um_name
   )
-
+# Second Visualization to show average commodity prices
 server2 <- function(input, output) {
   output$plot_no2 <- renderPlotly({
     df <- food_price_data_final %>%
@@ -40,7 +40,7 @@ server2 <- function(input, output) {
       )) +
       labs(
         title = "Average Price of each Commodity",
-        x = "Commodity Type",
+        x = "Commodity Type (Measured per 5 kg)",
         y = "Average Price"
       )
     return(plot)

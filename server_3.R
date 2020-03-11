@@ -2,7 +2,7 @@ library("shiny")
 library("dplyr")
 library("ggplot2")
 library("plotly")
-
+# Visualization showing malnourishment rates by year
 server3 <- function(input, output) {
   output$vis3 <- renderPlotly({
     df3 <- prev_undernourished_final_data %>%

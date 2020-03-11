@@ -16,7 +16,8 @@ server1 <- function(input, output) {
     vis_1 <- ggplot(data = df1) +
       geom_point(mapping = aes_string(
         x = "year",
-        y = "value"
+        y = "value",
+        colour = "location_name"
       )) +
       labs(
         title = "Malnourishment Rates over time",
