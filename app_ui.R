@@ -47,7 +47,13 @@ concluding_tab <- tabPanel(
     For Visualization 2, an important insight that can be made is that
     as the years go by, we get data for the average price of more commodities
     for any given country. An example of this from the visualization is that "
-  )
+  ),
+  p("For our third visualization, the user can look at years from 2000 to 2018.
+    The visualization will then be produced based on the year selected. 
+    The visualization is a bar graph that shows the undernourishment 
+    values of countries that use USD and the undernourishment levels 
+    during that particular year."
+    )
 )
 
 ui <- fluidPage(
