@@ -41,10 +41,19 @@ intro_tab <- tabPanel(
 # Conclusion
 concluding_tab <- tabPanel(
   "Overall Analysis",
-  p(
-    "For each of the visualizations, we were able to make some insightful
-    statements about food accessibility and the trend of food prices.
-    For Visualization 2, an important insight that can be made is that
+  p("For each of the visualizations, we were able to make some insightful
+    statements about food accessibility and the trend of food prices. Our first 
+    visualizations gives users an understanding of undernourishment rates selected
+    from the five countries that use the USD. The data timeline is from 2000 to 
+    the earliest data provided from the dataset, keeping in mind that this dataset
+    is updated. Looking at El Salvador specifically, we see that in the early 2000s
+    the lowest rate for malnourishment was just below 9 and then we have an upward
+    trend that continues until 2011 and then has an downward trend. 
+    For future implications, this could tell us that El Salvador rate of malnourishment
+    could continue on a downward trend. With the hopes of one day having malnourishment
+    rates below what it was in the early 2000 or surpassing it." 
+  ),
+  p("For Visualization 2, an important insight that can be made is that
     as the years go by, we get data for the average price of more commodities
     for any given country. An example of this from the visualization is that when
     looking at Panama, the two commodities that are listed are Maize (yellow) and 
