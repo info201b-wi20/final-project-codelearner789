@@ -55,12 +55,22 @@ concluding_tab <- tabPanel(
     the Maize and Rice will stay the same albeit a minor spike for a short period
     of time."
   ),
-  p("For our third visualization, the user can look at years from 2000 to 2018.
+  p("For our Undernourishment Rates, the user can look at years from 2000 to 2018.
     The visualization will then be produced based on the year selected. 
     The visualization is a bar graph that shows the undernourishment 
     values of countries that use USD and the undernourishment levels 
-    during that particular year."
-    )
+    during that particular year. The goal was to allow users to compare the 
+    countries in which we had compared food prices to compare nourishment rates 
+    each year. A pattern that can be seen is that overall the level of undernourishment
+    between the countries that measure food prices with USD decreased slightly over time
+    and the order of country with the works nourishment levels to best stayed the same
+    throughout the years. Zimbabwe was the country that after 2001 did not improve while
+    other countries were able to lower their undernourishment rate. Overall there was never
+    drastic improvement between these countries and there was a huge difference between
+    the countries in Latin American countries and other countries. The larger 
+    implications of this could be that countries where there was  no major changes 
+    in a sixteen year time span had not been presented with a good solution. This shows that
+    none of these countries have been able to remotely solve the problem.")
 )
 
 ui <- fluidPage(
