@@ -87,9 +87,8 @@ concluding_tab <- tabPanel(
 
 ui <- fluidPage(
   includeCSS("styles.css"),
-  shinythemes::themeSelector(),
   navbarPage(
-    theme = "cerulean",
+    theme = shinythemes::shinytheme("cerulean"),
     "Exploring food accessibility and malnourishment",
     intro_tab,
     vis_1,

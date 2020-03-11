@@ -77,5 +77,6 @@ choose_commodity <- sidebarLayout(
 
 vis_2 <- tabPanel(
   "Exploring Commodity Prices",
+  titlePanel("Commodity Prices in Different Countries over Time"),
   choose_commodity
 )
