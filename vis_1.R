@@ -32,7 +32,7 @@ prev_final <- prev_final[complete.cases(
   prev_final), ]
 
 #Create Visualizations for Page 1
-var1_vis1 <- sideLayout(
+var1_vis1 <- sidebarLayout(
   sidebarPanel(
     selectInput("country1",
                 label = h1("Select Country"),
@@ -62,4 +62,4 @@ vis_1 <- tabPanel(
     (You can select which country you want displayed by selecting a country in the tab on the left.)",
     var1_vis1)
   )
-)
+
