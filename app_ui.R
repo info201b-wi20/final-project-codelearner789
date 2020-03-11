@@ -40,7 +40,14 @@ intro_tab <- tabPanel(
 
 # Conclusion
 concluding_tab <- tabPanel(
-  "Ending Remarks"
+  "Overall Analysis",
+  p(
+    "For each of the visualizations, we were able to make some insightful
+    statements about food accessibility and the trend of food prices.
+    For Visualization 2, an important insight that can be made is that
+    as the years go by, we get data for the average price of more commodities
+    for any given country. An example of this from the visualization is that "
+  )
 )
 
 ui <- fluidPage(
