@@ -46,7 +46,14 @@ concluding_tab <- tabPanel(
     statements about food accessibility and the trend of food prices.
     For Visualization 2, an important insight that can be made is that
     as the years go by, we get data for the average price of more commodities
-    for any given country. An example of this from the visualization is that "
+    for any given country. An example of this from the visualization is that when
+    looking at Panama, the two commodities that are listed are Maize (yellow) and 
+    Rice(milled 80-20). The trend that occurs from 2012 to 2013 is that the price
+    of Maize spikes down and goes from 750 to 450 and then stays relatively the same
+    afterwards while the price of the Rice is the same through those years.
+    From this insight, we can gather that for future trends, the price of for both
+    the Maize and Rice will stay the same albeit a minor spike for a short period
+    of time."
   ),
   p("For our third visualization, the user can look at years from 2000 to 2018.
     The visualization will then be produced based on the year selected. 
