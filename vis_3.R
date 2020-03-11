@@ -9,8 +9,6 @@ prev_undernourish <-
     stringsAsFactors = FALSE
   )
 
-colnames(prev_undernourish)[colnames(prev_undernourish) == "ï..Goal"] <- "Goal"
-
 prev_undernourished_final_data <- select(
   prev_undernourish, GeoAreaName,
   TimePeriod, Value

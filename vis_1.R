@@ -5,13 +5,13 @@ library("ggplot2")
 library("plotly")
 prev_undernourish <-
   read.csv("data/prevelence_undernourished.csv",
-           stringsAsFactors = FALSE, encoding = "UTF-8")
-
-colnames(prev_undernourish)[colnames(prev_undernourish) == "ï..Goal"] <- "Goal"
+    stringsAsFactors = FALSE, encoding = "UTF-8"
+  )
 
 prev_final <- select(
   prev_undernourish, GeoAreaName,
-  TimePeriod, Value) %>%
+  TimePeriod, Value
+) %>%
   rename(
     location_name = GeoAreaName,
     year = TimePeriod,
@@ -20,52 +20,67 @@ prev_final <- select(
 
 prev_undernourished_final_data <- select(
   prev_undernourish, GeoAreaName,
-  TimePeriod, Value) %>%
+  TimePeriod, Value
+) %>%
   rename(
     location_name = GeoAreaName,
     year = TimePeriod,
     value = Value
   )
 
-prev_undernourished_final_data <- filter(prev_undernourished_final_data,
-                                         location_name != "World")
+prev_undernourished_final_data <- filter(
+  prev_undernourished_final_data,
+  location_name != "World"
+)
 prev_undernourished_final_data <- as.data.frame(lapply(
   prev_undernourished_final_data,
   function(x) gsub('\"', "", x)
 ))
 prev_undernourished_final_data$year <- as.numeric(
-  as.character(prev_undernourished_final_data$year))
+  as.character(prev_undernourished_final_data$year)
+)
 prev_undernourished_final_data$value <- as.numeric(
-  as.character(prev_undernourished_final_data$value))
+  as.character(prev_undernourished_final_data$value)
+)
 prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(
-  prev_undernourished_final_data), ]
+  prev_undernourished_final_data
+), ]
 
-prev_final <- filter(prev_undernourished_final_data,
-                     location_name != "World")
+prev_final <- filter(
+  prev_undernourished_final_data,
+  location_name != "World"
+)
 prev_final <- as.data.frame(lapply(
   prev_final,
-  function(x) gsub('\"', "", x)))
+  function(x) gsub('\"', "", x)
+))
 
 prev_final$year <- as.numeric(
-  as.character(prev_final$year))
+  as.character(prev_final$year)
+)
 prev_final$value <- as.numeric(
-  as.character(prev_final$value))
+  as.character(prev_final$value)
+)
 prev_final <- prev_final[complete.cases(
-  prev_final), ]
+  prev_final
+), ]
 
-#Create Visualizations for Page 1
+# Create Visualizations for Page 1
 var1_vis1 <- sidebarLayout(
   sidebarPanel(
     selectInput("country1",
-                label = h1("Select Country"),
-                choices = list("Zimbabwe" = "Zimbabwe",
-                               "Honduras" = "Honduras",
-                               "Timor-Leste" = "Timor-Leste",
-                               "Costa Rica" = "Costa Rica",
-                               "El Salvador" = "El Salvador",
-                               "Honduras" = "Honduras",
-                               "Panama" = "Panama"),
-                selected = "Zimbabwe")
+      label = h1("Select Country"),
+      choices = list(
+        "Zimbabwe" = "Zimbabwe",
+        "Honduras" = "Honduras",
+        "Timor-Leste" = "Timor-Leste",
+        "Costa Rica" = "Costa Rica",
+        "El Salvador" = "El Salvador",
+        "Honduras" = "Honduras",
+        "Panama" = "Panama"
+      ),
+      selected = "Zimbabwe"
+    )
   ),
   mainPanel(
     tags$h1("Undernourishment Over the Years in Various Countries"),

@@ -10,7 +10,6 @@ prev_undernourish <-
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
   stringsAsFactors = FALSE
 )
-colnames(prev_undernourish)[colnames(prev_undernourish) == "?..Goal"] <- "Goal"
 
 all_countries <- food_price_data %>%
   filter(cur_name == "USD") %>%
