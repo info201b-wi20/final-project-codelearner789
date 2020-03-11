@@ -5,7 +5,7 @@ library("ggplot2")
 library("plotly")
 prev_undernourish <-
   read.csv("data/prevelence_undernourished.csv",
-           stringsAsFactors = FALSE)
+           stringsAsFactors = FALSE, encoding = "UTF-8")
 
 colnames(prev_undernourish)[colnames(prev_undernourish) == "ï..Goal"] <- "Goal"
 
