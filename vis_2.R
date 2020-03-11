@@ -58,3 +58,4 @@ vis_2 <- tabPanel(
   "Exploring Commodity Prices",
   choose_commodity
 )
+
