@@ -7,9 +7,59 @@ prevelence_undernourishment_data <-
   read.csv("data/prevelence_undernourished.csv",
            stringsAsFactors = FALSE)
 
+colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "ï..Goal"] <- "Goal"
 
+prev_final <- select(
+  prevelence_undernourishment_data, GeoAreaName, 
+  TimePeriod, Value) %>%
+  rename(
+    location_name = GeoAreaName,
+    year = TimePeriod,
+    value = Value
+  )
 
+prev_final <- filter(prev_undernourished_final_data,
+                     location_name != "World")
+prev_final <- as.data.frame(lapply(
+  prev_final,
+  function(x) gsub('\"', "", x)))
 
+prev_final$year <- as.numeric(
+  as.character(prev_final$year))
+prev_final$value <- as.numeric(
+  as.character(prev_final$value))
+prev_final <- prev_final[complete.cases(
+  prev_final), ]
+
+#Create Visualizations for Page 1
+var1_vis1 <- sideLayout(
+  sidebarPanel(
+    selectInput("country1",
+                label = h1("Select Country"),
+                choices = list("Zimbabwe" = "Zimbabwe",
+                               "Honduras" = "Honduras",
+                               "Timor-Leste" = "Timor-Leste",
+                               "Costa Rica" = "Costa Rica",
+                               "El Salvador" = "El Salvador",
+                               "Honduras" = "Honduras",
+                               "Panama" = "Panama"),
+                selected = "Zimbabwe")
+  ),
+  mainPanel(
+    tags$h1("Undernourishment Over the Years in Various Countries"),
+    plotlyOutput("vis1")
+  )
+)
+    
+# Vis 1
 vis_1 <- tabPanel(
-  "First Visualization"
+  "Undernourishment in Different Countries",
+  titlePanel("Comparing Countries Undernourishment Over the Years"),
+  tags$p(
+    id = "vis1_descrip",
+    "This page aims to display undernourishment in countries that use USD over the years.
+    This helps to show the yearly changes in undernourishment in these countries. 
+    (You can select which country you want displayed by selecting a country in the tab on the left.)",
+    var1_vis1)
+  )
 )
