@@ -8,7 +8,8 @@ prevelence_undernourishment_data <-
            stringsAsFactors = FALSE)
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
                             stringsAsFactors = FALSE)
-# colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "?..Goal"] <- "Goal"
+
+colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "?..Goal"] <- "Goal"
 
 food_price_data_final <- select(food_price_data, adm0_name,
                                 cm_name, cur_name, mp_year, mp_price,
@@ -26,16 +27,16 @@ server2 <- function(input, output) {
   output$plot_no2 <- renderPlotly({
     
     df <- food_price_data_final %>%
+      filter(currency == "USD") %>%
       filter(year == input$year) %>%
       filter(country_name == input$Country) %>%
       group_by(commodity_purch) %>%
       summarise(price = max(price))
-    currency_used <- food_price_data_final %>%
-      filter(country_name == input$Country) %>%
-      group_by(currency) %>%
-      summarize(num = n()) %>%
-      pull(currency)
-    titleText <- paste0("Average Price in ", currency_used)
+    # currency_used <- food_price_data_final %>%
+    #   filter(country_name == input$Country) %>%
+    #   group_by(currency) %>%
+    #   summarize(num = n()) %>%
+    #   pull(currency)
     plot <- ggplot(data = df) +
       geom_col(mapping = aes_string(
         x = "commodity_purch",
@@ -45,7 +46,7 @@ server2 <- function(input, output) {
         angle = 90, hjust = 1
       )) +
       labs(
-        title = titleText,
+        title = "Average Price of each Commodity",
         x = "Commodity Type",
         y = "Average Price"
       )
