@@ -12,11 +12,15 @@ server1 <- function(input, output) {
                                   "Honduras", "Panama")) %>%
       filter(location_name == input$country1)
     vis_1 <- ggplot(data = df1) +
-      geom_point(mapping = aes(
+      geom_point(mapping = aes_string(
         x = "year",
         y = "value",
         color = "location_name")) +
-      ggtitle("Test")
+      labs(
+        title = "Malnourishment Rates over time",
+        x = "Year",
+        y = "Malnourishment Rate"
+      )
     vis_1
   })
 }
