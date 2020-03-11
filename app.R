@@ -5,5 +5,5 @@ library("ggplot2")
 library("plotly")
 source("app_ui.R")
 source("app_server.R")
-shinyApp(ui = ui, server = server2)
+shinyApp(ui = ui, server = server)
 
