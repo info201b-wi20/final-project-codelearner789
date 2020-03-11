@@ -3,20 +3,42 @@ library("shiny")
 library("dplyr")
 library("ggplot2")
 library("plotly")
-prevelence_undernourishment_data <-
+prev_undernourish <-
   read.csv("data/prevelence_undernourished.csv",
            stringsAsFactors = FALSE)
 
-colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "Ã¯..Goal"] <- "Goal"
+colnames(prev_undernourish)[colnames(prev_undernourish) == "ï..Goal"] <- "Goal"
 
 prev_final <- select(
-  prevelence_undernourishment_data, GeoAreaName, 
+  prev_undernourish, GeoAreaName,
   TimePeriod, Value) %>%
   rename(
     location_name = GeoAreaName,
     year = TimePeriod,
     value = Value
   )
+
+prev_undernourished_final_data <- select(
+  prev_undernourish, GeoAreaName,
+  TimePeriod, Value) %>%
+  rename(
+    location_name = GeoAreaName,
+    year = TimePeriod,
+    value = Value
+  )
+
+prev_undernourished_final_data <- filter(prev_undernourished_final_data,
+                                         location_name != "World")
+prev_undernourished_final_data <- as.data.frame(lapply(
+  prev_undernourished_final_data,
+  function(x) gsub('\"', "", x)
+))
+prev_undernourished_final_data$year <- as.numeric(
+  as.character(prev_undernourished_final_data$year))
+prev_undernourished_final_data$value <- as.numeric(
+  as.character(prev_undernourished_final_data$value))
+prev_undernourished_final_data <- prev_undernourished_final_data[complete.cases(
+  prev_undernourished_final_data), ]
 
 prev_final <- filter(prev_undernourished_final_data,
                      location_name != "World")
@@ -47,19 +69,20 @@ var1_vis1 <- sidebarLayout(
   ),
   mainPanel(
     tags$h1("Undernourishment Over the Years in Various Countries"),
+    tags$p(
+      id = "vis1_descrip",
+      "This page aims to display undernourishment in countries that use USD
+    over the years. This helps to show the yearly changes in undernourishment
+    in these countries. (You can select which country you want displayed by
+    selecting a country in the tab on the left.)",
+    ),
     plotlyOutput("vis1")
   )
 )
-    
+
 # Vis 1
 vis_1 <- tabPanel(
   "Undernourishment in Different Countries",
   titlePanel("Comparing Countries Undernourishment Over the Years"),
-  tags$p(
-    id = "vis1_descrip",
-    "This page aims to display undernourishment in countries that use USD over the years.
-    This helps to show the yearly changes in undernourishment in these countries. 
-    (You can select which country you want displayed by selecting a country in the tab on the left.)",
-    var1_vis1)
-  )
-
+  var1_vis1
+)

@@ -3,12 +3,14 @@ library("dplyr")
 library("ggplot2")
 library("plotly")
 
-prevelence_undernourishment_data <-
+prev_undernourish <-
   read.csv("data/prevelence_undernourished.csv",
-           stringsAsFactors = FALSE)
+    stringsAsFactors = FALSE
+  )
 food_price_data <- read.csv("data/wfp_market_food_prices.csv",
-                            stringsAsFactors = FALSE)
-colnames(prevelence_undernourishment_data)[colnames(prevelence_undernourishment_data) == "?..Goal"] <- "Goal"
+  stringsAsFactors = FALSE
+)
+colnames(prev_undernourish)[colnames(prev_undernourish) == "?..Goal"] <- "Goal"
 
 all_countries <- food_price_data %>%
   filter(cur_name == "USD") %>%
@@ -16,9 +18,11 @@ all_countries <- food_price_data %>%
   summarize(num_countries = n()) %>%
   pull(adm0_name)
 
-food_price_data_final <- select(food_price_data, adm0_name,
-                                cm_name, cur_name, mp_year, mp_price,
-                                um_id, um_name) %>%
+food_price_data_final <- select(
+  food_price_data, adm0_name,
+  cm_name, cur_name, mp_year, mp_price,
+  um_id, um_name
+) %>%
   rename(
     country_name = adm0_name,
     commodity_purch = cm_name,
@@ -26,7 +30,8 @@ food_price_data_final <- select(food_price_data, adm0_name,
     year = mp_year,
     price = mp_price,
     unit = um_id,
-    unit_type = um_name)
+    unit_type = um_name
+  )
 
 all_years <- food_price_data_final %>%
   filter(currency == "USD") %>%
@@ -53,7 +58,8 @@ choose_commodity <- sidebarLayout(
   mainPanel(
     tags$h2(
       id = "comp_heading",
-      "Average prices of commodities for Different Countries"),
+      "Average prices of commodities for Different Countries"
+    ),
     tags$p(
       id = "price_compare",
       "This portion of the report aims to examine the average prices
@@ -73,4 +79,3 @@ vis_2 <- tabPanel(
   "Exploring Commodity Prices",
   choose_commodity
 )
-
